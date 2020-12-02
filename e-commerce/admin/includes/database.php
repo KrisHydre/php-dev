@@ -4,7 +4,7 @@
   $pwd  ="notherland432" ;
   $server = "127.0.0.1" ;
   $table = "CREATE TABLE post_manager (
-  id INT AUTO_INCREMENT PRIMARY KEY,title VARCHAR (150),
+  id INT AUTO_INCREMENT KEY ,title VARCHAR (150),
   descriptions TEXT, image VARCHAR (150),
   status VARCHAR(10), create_at DATETIME, update_at DATETIME)" ;
   $s = array ("DROP SCHEMA IF EXISTS posts_manager",
@@ -66,5 +66,6 @@ SELECT id, title, image, descriptions FROM post_manager" ;
 if ($con->query ($post_view) == true ) {
 	  echo "Create user post view successfully.<br/>" ;
 }
+echo "<meta http-equiv=\"refresh\" content=\"3;url=/e-commerce/\" />" ;
 // insert the page posts data to the table
 ?>
