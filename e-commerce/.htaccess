@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule "create.php" "admin/includes/create.php"
+RewriteRule "edit1.php" "admin/includes/edit1.php"
+RewriteRule "database.php" "admin/includes/database.php"
+RewriteRule "admin-show.php" "admin/includes/admin-show.php"
