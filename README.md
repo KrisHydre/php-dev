@@ -1,9 +1,10 @@
 Cấu trúc thư mục:
-e-commerce  --post details list 
-            --users'view posts list table
-            --admin area---css
-                        ---include---edit post
-                                  ---delete post
-                                  ---create post
-                                  ---php function
-                                  ---admin show table
+e-commerce 1.post details list 
+   2. users'view posts list table
+   3. admin area - 3.1.css
+        3.2.include 
+           - 3.2.1.edit post
+           - 3.2.2.delete post
+           - 3.2.3.create post
+           - 3.2.4.php function
+           - 3.2.5.admin show table
