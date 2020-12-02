@@ -9,18 +9,18 @@
 	$server = "127.0.0.1" ;
 	$db = "posts_manager" ;
 	$con = new mysqli ($server, $user, $pwd, $db) ;
-	$script = "SELECT id, image, title, status FROM post_manager GROUP BY id LIMIT ".$startFrom .",". $showRecord ;
+	$script = "SELECT id, image, title, status FROM post_manager GROUP BY id" ;
 	$use = $con->query ("USE posts_manager") ;
 	$run = $con->query($script) ;
 	$i = 1 ;
 ?>
 <head>
- <h1 size=45 style="text-align:center;"> <b> Admin Posts Listings </h1>
+ <h1 size=45 > <b> Admin Posts Listings </h1>
 </head>
 
 <body>
 	<a href="create.php" class="w3-btn w3-black">
-		<button class="w3-btn w3-black" id='create' style="float:right;"><b>Create</button>
+		<button class="w3-btn w3-black" id='create' style="float:center;">Create</button>
 		</a>
 <!-- Main container start here -->
 		<table>
@@ -38,15 +38,15 @@
 				echo ("<td>"
 				 .$row["id"]. 
 				"</td>".
-				
+
 				"<td>"
-				."<img id=\"p" . $i . "\"" . "src=\"..\\..\\" . $row["image"] . "\" />" . 
+				."<img id=\"p" . $i . "\"" . "src=\"..\\" . $row["image"] . "\" />" . 
 				"</td>".
-				
+
 				"<td>"
 				.$row["title"].
 				"</td>".
-				
+
 				"<td>"
 				.$row["status"].
 				"</td>".
@@ -57,12 +57,10 @@
 				"</td>");
 				echo "</tr>" ;
 				$i++ ;
-				#echo "<script> alert ('Delete post successfully') </script>" ;
-				#echo "<script> wind	ow.open ('admin-show.php', '_self') </script>" ;
 			}
 		?>
 		</table>
-		
+
 <!--End Main container -->
 </body>
 </html>
