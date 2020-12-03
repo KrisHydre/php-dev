@@ -83,8 +83,8 @@ if (isset($_GET['pageno'])) {
 				"</td>".
 				"<td>".
 					"<a href=\"admin-show.php?id=" . $row['id']." \"><button> Show </button/> </a> <br><br>" .
-					"<a href=\"admin-show.php?id=". $row['id'] ."\"><button> Edit </button></a> <br><br>" .
-					"<a href=\"admin-show.php?id=". $row['id'] ."\"><button> Delete </button></a> <br><br>" .
+					"<a href=\"./edit/edit". $row['id'] .".php\"><button> Edit </button></a> <br><br>" .
+					"<a href=\"./delete/delete". $row['id'] .".php\"><button> Delete </button></a> <br><br>" .
 				"</td>");
 				echo "</tr>" ;
 				$i++ ;
