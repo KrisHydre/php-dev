@@ -21,7 +21,7 @@ include "../admin/includes/database.php" ;
 			# extract the date from mysql
 		if (isset ($_GET ['id'])) {
 			$script = "SELECT title, image, descriptions FROM post_manager WHERE id=\"" . $_GET['id'] . "\"" ;
-			echo $script ; 
+			#echo $script ; 
 			$use = $con->query ("USE posts_manager") ;
 			$run = $con->query($script) ;
 			$row = $run->fetch_assoc() ;
