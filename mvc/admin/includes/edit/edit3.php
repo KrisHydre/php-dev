@@ -7,10 +7,7 @@
 </head>
 <?php
 include "checkImg.php";
-	$user ="root" ;
-	$pwd  ="notherland432" ;
-	$server = "127.0.0.1" ;
-	$db = "posts_manager" ;
+include "../database.php" ;
 	$con = new mysqli ($server, $user, $pwd, $db) ;
 	$script = "SELECT id, image, title, status, descriptions FROM post_manager WHERE id=3" ;
 	$use = $con->query ("USE posts_manager") ;

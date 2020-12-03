@@ -2,10 +2,7 @@
 <html>
 <body>
 <?php 
-	$user ="root" ;
-	$pwd  ="notherland432" ;
-	$server = "127.0.0.1" ;
-	$db = "posts_manager" ;
+include "../database.php" ;
 	$con = new mysqli ($server, $user, $pwd, $db) ;
 	$use = $con->query ("USE posts_manager") ;
 	if (array_key_exists('delete', $_POST)) {

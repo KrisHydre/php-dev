@@ -1,33 +1,28 @@
+
 <?php
 // vars & params
   $user ="root" ;
   $pwd  ="notherland432" ;
   $server = "127.0.0.1" ;
-  $table = "CREATE TABLE post_manager (
-  id INT AUTO_INCREMENT KEY ,title VARCHAR (150),
-  descriptions TEXT, image VARCHAR (150),
-  status VARCHAR(10), create_at DATETIME, update_at DATETIME)" ;
-  $s = array ("DROP SCHEMA IF EXISTS posts_manager",
-  "CREATE SCHEMA posts_manager", "USE posts_manager",
-  "DROP TABLE IF EXISTS post_manager");
-  $file = (fopen("db.csv", "r")) ; // open the file
   
 // create new connetion
-  function connect_to_sql ($server, $user, $pwd) 
-  {
+function connect_to_sql ($server, $user, $pwd) {
 	  $con = new mysqli ($server, $user, $pwd ) ;
 	  return $con  ;
   }
-  $con = connect_to_sql ($server, $user, $pwd) ;
-  
+function firt_run ($con) {
 // check the connection
   if ($con->connect_error) {
-	  die ("***Conection Error: ".$con->error."<br/>") ;
+	  die ("<br/>***Conection Error: ".$con->error."<br/>") ;
   }
-  echo "***Connecting Successfully"."<br/>" ;
+  echo "<br/>***Connecting Successfully"."<br/>" ;
   
 // create new database
+  $s = array ("DROP SCHEMA IF EXISTS posts_manager",
+	  "CREATE SCHEMA posts_manager", "USE posts_manager",
+	  "DROP TABLE IF EXISTS post_manager");
   foreach ($s as $script) {
+	  
 	  $con->query($script) ;
 	  if ($con->query($s[1]) === true){
 		  echo "\n**Creating schema successfully"."<br/>" ;
@@ -35,13 +30,19 @@
   }
 
 // create new table
+  $table = "CREATE TABLE post_manager (
+	  id INT AUTO_INCREMENT KEY ,title VARCHAR (150),
+	  descriptions TEXT, image VARCHAR (150),
+	  status VARCHAR(10), create_at DATETIME, update_at DATETIME)" ;
   if ($con->query($table) ===true) {
+	  
 	  echo "\n*Creating table successfully\n"."<br/>" ;
   } else {
 	  echo "\n*Error creating table: " .$con->error."<br/>" ;
   }
   
 // open file, read csv file and insert the data from it into SQL server.
+   $file = (fopen("db.csv", "r")) ; // open the file
    if ($file == true) {
 	    while (($csv = fgetcsv($file)) == true) {
 			$scripts = ("INSERT INTO post_manager VALUES
@@ -52,7 +53,7 @@
 	   }
 	    echo "Insert Data Successfully<br/>" ;
    }
-	  #echo "Insert data successfully<br/>" ;
+	  echo "Insert data successfully<br/>" ;
 	  fclose($file) ;
   
 // create user view to the file
@@ -66,6 +67,22 @@ SELECT id, title, image, descriptions FROM post_manager" ;
 if ($con->query ($post_view) == true ) {
 	  echo "Create user post view successfully.<br/>" ;
 }
-echo "<meta http-equiv=\"refresh\" content=\"3;url=/mvc/\" />" ;
+}
 // insert the page posts data to the table
+
+//RUN THE FUNCTION
+$con = connect_to_sql ($server, $user, $pwd) ;
+if (!debug_backtrace()) {
+    
+	echo "<meta http-equiv=\"refresh\" content=\"3;url=/mvc/\" />"	;
+	echo "<!doctype html>
+<html>
+<title> SQL Script </title>
+<head> <h1> <b> THE SCRIPT IS RUNNING SILENCELY </head>" ;
+	firt_run($con) ;
+	echo "<body></body>
+</html>";
+}
+
+
 ?>

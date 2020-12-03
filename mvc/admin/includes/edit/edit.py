@@ -1,4 +1,6 @@
-<!doctype html>
+for i in range (1,14):
+    with open ('edit%s.php'%i, 'w+')as f:
+        a = ('''<!doctype html>
 <html>
 <title> Editting Mode </title>
 <link rel="stylesheet" href="style.css"/>
@@ -9,18 +11,19 @@
 include "checkImg.php";
 include "../database.php" ;
 	$con = new mysqli ($server, $user, $pwd, $db) ;
-	$script = "SELECT id, image, title, status, descriptions FROM post_manager WHERE id=10" ;
+	$script = "SELECT id, image, title, status, descriptions FROM post_manager WHERE id=%s" ;
 	$use = $con->query ("USE posts_manager") ;
 	$run = $con->query($script) ;
 	$row = $run->fetch_assoc() ;
 	
 ?>
-<body>
+''' %i)
+        b = ('''<body>
   <!-- Main content start here -->
   <div class="main_part">
   
 	<div class='button'>
-		<a href="../../../postlist/p10.php" class="w3-btn w3-black">
+		<a href="../../../postlist/p%i.php" class="w3-btn w3-black">
 		<button class="w3-btn w3-black">Show</button>
 		</a>
 		<a href="../admin-show.php" class="w3-btn w3-black">
@@ -29,12 +32,13 @@ include "../database.php" ;
 	</div>
 	
 	<hr class="solid">
-
+''' %i)
+        c = ('''
     <!-- Edit Titles -->
 	<div class="edit-table">
 	
 		<div class="title" >
-		  <form action="edit10.php" method="post" enctype="multipart/form-data">
+		  <form action="edit%i.php" method="post" enctype="multipart/form-data">
 			<label> <b>Title </label>
 			<input type="text" id='tit' name="title" value="<?php echo $row["title"] ?>" > <br> 
 			<hr class="solid">
@@ -57,25 +61,26 @@ include "../database.php" ;
 		
 		<div class="browse">
 </div>
-
+''' %i)
+        d = '''
 			  Select image to upload:
 			  <input type="file" name="fileToUpload" id="fileToUpload"> <br>
 			  <img id='thumb' src= "
 			  <?php if (isset($_FILES["fileToUpload"]["name"])) {
-				  echo "images\\".htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) ;
+				  echo "images\\\\".htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) ;
 			  } else {
-				  echo "..\\..\\..\\" . $row['image'];
+				  echo "..\\\\..\\\\..\\\\\" . $row['image'];
 				  }
 			  ?>" > <br>
 			  <?php
 				if (isset($_REQUEST['title']) && isset($_REQUEST['description']) && isset($_REQUEST['status']) ) {
 					$s = "UPDATE post_manager SET title='" . $_REQUEST['title'] . "', descriptions='" . $_REQUEST['description'] . 
 					"', status='" . $_REQUEST['status']. "', image='images/".htmlspecialchars(basename($_FILES["fileToUpload"]["name"]))
-					. "' WHERE id = 10" ;
+					. "' WHERE id = %i" ;
 					#echo ($s) ;
 					$con->query($s) ;
 					check_img () ;
-					echo "<meta http-equiv=\"refresh\" content=\"3;url=/mvc/admin/includes/admin-show.php\" />" ;
+					echo "<meta http-equiv=\\"refresh\\" content=\\"3;url=/mvc/admin/includes/admin-show.php\\" />" ;
 				}
 				?>
 			  <hr class="solid">
@@ -96,3 +101,6 @@ include "../database.php" ;
 <!--End Main container -->
 </body>
 </html>
+''' %i
+        f.write (a), f.write (b), f.write (c), f.write (d)       
+        

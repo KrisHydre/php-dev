@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="../css/style.css"/>
 <!--link rel="stylesheet" href="../css/style.css"/-->
 <?php
+include "database.php" ;
 if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
         } else {
@@ -11,11 +12,7 @@ if (isset($_GET['pageno'])) {
         }
 	$row_per_page = 5 ;
 	$start = ($pageno-1) * $row_per_page;
-	$user ="root" ;
-	$pwd  ="notherland432" ;
-	$server = "127.0.0.1" ;
 	$db = "posts_manager" ;
-	$con = new mysqli ($server, $user, $pwd, $db) ;
 	$script = "SELECT id, image, title, status FROM post_manager GROUP BY id LIMIT ".$start ."," . $row_per_page ;
 	$con->query ("USE posts_manager") ;
 	$i = 1 ;

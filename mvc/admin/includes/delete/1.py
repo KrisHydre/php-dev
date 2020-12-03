@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+for i in range (1,14):
+    with open ('delete%s.php'%i, 'w+')as f:
+        a = ('''<!DOCTYPE html>
 <html>
 <body>
 <?php 
@@ -6,8 +8,8 @@ include "../database.php" ;
 	$con = new mysqli ($server, $user, $pwd, $db) ;
 	$use = $con->query ("USE posts_manager") ;
 	if (array_key_exists('delete', $_POST)) {
-		$con->query ("DELETE FROM posts_manager.post_manager WHERE id=10");
-		echo "<meta http-equiv=\"refresh\" content=\"1;url=/mvc/admin/includes/admin-show.php\" />" ;
+		$con->query ("DELETE FROM posts_manager.post_manager WHERE id=%s");
+		echo "<meta http-equiv=\\"refresh\\" content=\\"1;url=/mvc/admin/includes/admin-show.php\\" />" ;
 	}
 ?>
     <div class="container">
@@ -27,3 +29,6 @@ include "../database.php" ;
 </div> 
 </body>
 </html>
+''' %i)
+        f.write (a)      
+        

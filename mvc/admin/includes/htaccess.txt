@@ -1,0 +1,126 @@
+Example 1
+
+Original URL:
+http://www.domain.com/product.php?id=15
+
+Rewritten URL:
+http://www.domain.com/15.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^([^/]*)\.php$ /product.php?id=$1 [L]
+
+ 
+
+Example 2
+
+Original URL:
+http://www.domain.com/product.php?id=15
+
+Rewritten URL:
+http://www.domain.com/product15.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^product([^/]*)\.php$ /product.php?id=$1 [L]
+
+ 
+
+Example 3
+
+Original URL:
+http://www.domain.com/product.php?cat=5&id=15
+
+Rewritten URL:
+http://www.domain.com/5/15.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^([^/]*)/([^/]*)\.php$ /product.php?cat=$1&id=$2 [L]
+
+ 
+
+Example 4
+
+Original URL:
+http://www.domain.com/product.php?cat=5&id=15
+
+Rewritten URL:
+http://www.domain.com/5-15.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^([^-]*)-([^-]*)\.php$ /product.php?cat=$1&id=$2 [L]
+
+ 
+
+Example 5
+
+Original URL:
+http://www.domain.com/product.php?category=vehicles&product=bus
+
+Rewritten URL:
+http://www.domain.com/product/vehicles/bus.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^([^/]*)/([^/]*)\.php$ /product.php?category=$1&product=$2 [L]
+
+ 
+
+Example 6
+
+Original URL:
+http://www.domain.com/cgi-bin/shop.php?cmd=product&category=vehicles&product=bus
+
+Rewritten URL:
+http://www.domain.com/product/vehicles/bus.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^([^/]*)/([^/]*)/([^/]*)\.php$ /cgi-bin/shop.php?cmd=$1&category=$2&product=$3 [L]
+
+ 
+
+Example 7
+
+Original URL:
+http://www.domain.com/cgi-bin/shop.php?cmd=product&category=vehicles&product=bus
+
+Rewritten URL:
+http://www.domain.com/shop/product/vehicles/bus.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^shop/([^/]*)/([^/]*)/([^/]*)\.php$ /cgi-bin/shop.php?cmd=$1&category=$2&product=$3 [L]
+
+ 
+
+Example 8
+
+Original URL:
+http://www.domain.com/cgi-bin/shop.php?cmd=product&category=vehicles&product=bus
+
+Rewritten URL:
+http://www.domain.com/shop-vehicles-bus.php
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^shop-([^-]*)-([^-]*)\.php$ /cgi-bin/shop.php?cmd=product&category=$1&product=$2 [R=301,L]
+
+ 
+
+Example 9
+The following rewrite rule utilizes ^$ to represent the root and rewrite that to your /shop directory.
+
+Original URL:
+http://www.domain.com/
+
+Rewritten URL:
+http://www.domain.com/shop
+
+Rule for .htaccess:
+RewriteEngine On
+RewriteRule ^$ /shop [R=301,L]
+
+ 
