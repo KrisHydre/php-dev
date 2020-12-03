@@ -4,11 +4,8 @@
 <link rel="stylesheet" href="style.css"/>
 <!--link rel="stylesheet" href="../css/style.css"/-->
 <?php 
-	$user ="test" ;
-	$pwd  ="test" ;
-	$server = "127.0.0.1" ;
-	$db = "posts_manager" ;
-	$con = new mysqli ($server, $user, $pwd, $db) ;
+include "../admin/includes/database.php" ;
+	$con->query ("USE posts_manager");
 	$script = "SELECT title, image, descriptions FROM posts_manager.v_post WHERE id='9'" ;
 	$run = $con->query($script) ;
 	$row = $run->fetch_assoc() ;
