@@ -1,0 +1,21 @@
+table, th, td {
+	font-style:bold ;
+	font-size:20 ;
+	margin:auto ;
+	border: 2px solid black;
+	border-collapse:1px;
+}
+img {
+	float:left ;
+	width: 200px ;
+	padding: 20px ;
+}
+head, h1{
+	float:center ;
+}
+input.title{
+	float:right ;
+}
+button{
+	float:center;
+}
