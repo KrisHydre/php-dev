@@ -4,11 +4,7 @@
 <link rel="stylesheet" href="style.css"/>
 <!--link rel="stylesheet" href="../css/style.css"/-->
 <?php 
-	$user ="test" ;
-	$pwd  ="test" ;
-	$server = "127.0.0.1" ;
-	$db = "posts_manager" ;
-	$con = new mysqli ($server, $user, $pwd, $db) ;
+include "../admin/includes/database.php" ;
 	$script = "SELECT * FROM posts_manager.v_listpost GROUP BY id" ;
 	$use = $con->query ("USE posts_manager") ;
 	$run = $con->query($script) ;
